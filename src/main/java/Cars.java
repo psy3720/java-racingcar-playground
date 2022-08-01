@@ -35,9 +35,9 @@ public class Cars {
         List<Car> max = max();
 
         for(Car car : max) {
-            result += car.getName();
+            result += car.getName() + ",";
         }
 
-        System.out.println(result + "가 최종 우승했습니다.");
+        System.out.println(result.substring(0,result.length()-1) + "가 최종 우승했습니다.");
     }
 }

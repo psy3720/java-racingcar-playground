@@ -2,6 +2,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -28,8 +29,16 @@ public class CarTest {
     }
 
     @Test
-    void max() {
+    void createRandomNumber() {
+        Car car = new Car("test");
+        assertThat(car.createRandomNumber() > 0 && car.createRandomNumber() < 10).isTrue();
+    }
 
+    @Test
+    void max() {
+        Cars cars = new Cars("test1,test2,test3");
+        List<Car> max = cars.max();
+        assertThat(max.size()).isEqualTo(3);
     }
 
     public static void main(String[] args) {
