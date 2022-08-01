@@ -3,6 +3,7 @@ package racingGame.domain;
 import java.util.Objects;
 
 public class Car {
+    private static final int FORWARD_NUM = 4;
     private Name name;
     private Position position;
 
@@ -11,9 +12,16 @@ public class Car {
         this.position = new Position(position);
     }
 
+    public Position move(MovingStrategy movingStrategy) {
+        if(movingStrategy.isMovable()) {
+            return position.plus();
+        }
+        return position;
+    }
+
     public Position move(int randomNumber) {
-        if (randomNumber >= 4) {
-            position.plus();
+        if (randomNumber >= FORWARD_NUM) {
+            return position.plus();
         }
         return position;
     }
@@ -26,12 +34,19 @@ public class Car {
         return position;
     }
 
-    public boolean isEqualPosition(int max) {
+    public boolean isWinner(int max) {
         return position.getPosition() == max;
     }
 
     public boolean isGreaterThanPosition(int max) {
         return position.getPosition() > max;
+    }
+
+    public Position getMaxPosition(Position position) {
+        if (this.position.lessThan(position)) {
+            return position;
+        }
+        return this.position;
     }
 
     @Override

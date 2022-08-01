@@ -15,8 +15,8 @@ public class Position {
         this.position = position;
     }
 
-    public void plus() {
-        this.position++;
+    public Position plus() {
+        return new Position(this.position+1);
     }
 
     public int getPosition() {
@@ -34,5 +34,9 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    public boolean lessThan(Position position) {
+        return this.position < position.getPosition();
     }
 }

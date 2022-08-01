@@ -3,6 +3,8 @@ package racingGame.domain;
 import racingGame.ui.InputView;
 import racingGame.ui.ResultView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
@@ -17,7 +19,15 @@ public class RacingGame {
     }
 
     public void start() {
-        carList = new Cars(inputView.inputCarNames());
+        String carNames = inputView.inputCarNames();
+        String[] strings = carNames.split(",");
+
+        List<Car> cars = new ArrayList<>();
+        for (String carName : strings) {
+            cars.add(new Car(carName, 1));
+        }
+
+        carList = new Cars(cars);
         this.start(inputView.inputTryCount());
     }
 
